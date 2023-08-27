@@ -1,13 +1,19 @@
 //
-//  LibrespotObjC_lib.h
-//  LibrespotObjC-lib
+//  libvorbis_test.h
+//  libvorbis-test
 //
-//  Created by Danny Herrmann on 8/21/23.
+//  Created by Danny Herrmann on 8/20/23.
 //  Copyright (c) 2023 Danny Herrmann. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef LibrespotObjC_lib_h
+#define LibrespotObjC_lib_h
 
-@interface LibrespotObjC_lib : NSObject
+#include <stdio.h>
 
-@end
+// Declare the decode function
+
+void decodeOggVorbisFile(const char *inputPath, const char *outputPath);
+
+#endif /* librespot_ppc_lib_h */
+

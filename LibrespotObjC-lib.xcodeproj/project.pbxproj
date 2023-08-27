@@ -10,6 +10,18 @@
 		710289482A94568D0036871F /* LibrespotObjC_lib.h in Headers */ = {isa = PBXBuildFile; fileRef = 710289472A94568D0036871F /* LibrespotObjC_lib.h */; };
 		7102894A2A94568D0036871F /* LibrespotObjC_lib.m in Sources */ = {isa = PBXBuildFile; fileRef = 710289492A94568D0036871F /* LibrespotObjC_lib.m */; };
 		710289502A94568D0036871F /* libLibrespotObjC-lib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 710289442A94568D0036871F /* libLibrespotObjC-lib.dylib */; };
+		7102895F2A94580D0036871F /* libvorbis.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7102895E2A94580D0036871F /* libvorbis.0.dylib */; };
+		710289612A9458100036871F /* libvorbisfile.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 710289602A9458100036871F /* libvorbisfile.3.dylib */; };
+		7107E88C2A95536D00DE71A1 /* OutputAudioFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7107E88B2A95536D00DE71A1 /* OutputAudioFormat.m */; };
+		7107E88E2A95575F00DE71A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7107E88D2A95575F00DE71A1 /* Foundation.framework */; };
+		7107E8902A9557BC00DE71A1 /* libobjc.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7107E88F2A9557BC00DE71A1 /* libobjc.A.dylib */; };
+		7107E8942A95592B00DE71A1 /* SeekableInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7107E8932A95592B00DE71A1 /* SeekableInputStream.m */; };
+		7107E8972A9565F500DE71A1 /* Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7107E8962A9565F500DE71A1 /* Decoder.m */; };
+		7107E89C2A95681D00DE71A1 /* VorbisDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7107E89B2A95681D00DE71A1 /* VorbisDecoder.m */; };
+		71C41DE22A9A83E800C2A7DB /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C41DE02A9A7A3500C2A7DB /* CoreAudio.framework */; };
+		71F5235D2A96F0720066E361 /* libogg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 71F5235C2A96F0720066E361 /* libogg.0.dylib */; };
+		71F523652A96FDF20066E361 /* MixerOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F523642A96FDF20066E361 /* MixerOutput.m */; };
+		71F523682A9700050066E361 /* LineHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F523672A9700050066E361 /* LineHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +40,24 @@
 		710289492A94568D0036871F /* LibrespotObjC_lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibrespotObjC_lib.m; sourceTree = "<group>"; };
 		7102894F2A94568D0036871F /* LibrespotObjC-libTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LibrespotObjC-libTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		710289552A94568D0036871F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7102895E2A94580D0036871F /* libvorbis.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o"; name = libvorbis.0.dylib; path = ../../../../usr/local/lib/libvorbis.0.dylib; sourceTree = "<group>"; };
+		710289602A9458100036871F /* libvorbisfile.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o"; name = libvorbisfile.3.dylib; path = ../../../../usr/local/lib/libvorbisfile.3.dylib; sourceTree = "<group>"; };
+		7107E88A2A95530C00DE71A1 /* OutputAudioFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OutputAudioFormat.h; sourceTree = "<group>"; };
+		7107E88B2A95536D00DE71A1 /* OutputAudioFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutputAudioFormat.m; sourceTree = "<group>"; };
+		7107E88D2A95575F00DE71A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7107E88F2A9557BC00DE71A1 /* libobjc.A.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libobjc.A.dylib; path = usr/lib/libobjc.A.dylib; sourceTree = SDKROOT; };
+		7107E8922A95590D00DE71A1 /* SeekableInputStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeekableInputStream.h; sourceTree = "<group>"; };
+		7107E8932A95592B00DE71A1 /* SeekableInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeekableInputStream.m; sourceTree = "<group>"; };
+		7107E8952A9565DD00DE71A1 /* Decoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
+		7107E8962A9565F500DE71A1 /* Decoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Decoder.m; sourceTree = "<group>"; };
+		7107E89A2A95681300DE71A1 /* VorbisDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VorbisDecoder.h; sourceTree = "<group>"; };
+		7107E89B2A95681D00DE71A1 /* VorbisDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VorbisDecoder.m; sourceTree = "<group>"; };
+		71C41DE02A9A7A3500C2A7DB /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		71F5235C2A96F0720066E361 /* libogg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o"; name = libogg.0.dylib; path = ../../../../usr/local/lib/libogg.0.dylib; sourceTree = "<group>"; };
+		71F523632A96FDD30066E361 /* MixerOutput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixerOutput.h; sourceTree = "<group>"; };
+		71F523642A96FDF20066E361 /* MixerOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixerOutput.m; sourceTree = "<group>"; };
+		71F523662A96FFEA0066E361 /* LineHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineHelper.h; sourceTree = "<group>"; };
+		71F523672A9700050066E361 /* LineHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +65,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71C41DE22A9A83E800C2A7DB /* CoreAudio.framework in Frameworks */,
+				71F5235D2A96F0720066E361 /* libogg.0.dylib in Frameworks */,
+				7102895F2A94580D0036871F /* libvorbis.0.dylib in Frameworks */,
+				710289612A9458100036871F /* libvorbisfile.3.dylib in Frameworks */,
+				7107E88E2A95575F00DE71A1 /* Foundation.framework in Frameworks */,
+				7107E8902A9557BC00DE71A1 /* libobjc.A.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +88,12 @@
 		7102893B2A94568D0036871F = {
 			isa = PBXGroup;
 			children = (
+				71C41DE02A9A7A3500C2A7DB /* CoreAudio.framework */,
+				71F5235C2A96F0720066E361 /* libogg.0.dylib */,
+				7107E88F2A9557BC00DE71A1 /* libobjc.A.dylib */,
+				7107E88D2A95575F00DE71A1 /* Foundation.framework */,
+				710289602A9458100036871F /* libvorbisfile.3.dylib */,
+				7102895E2A94580D0036871F /* libvorbis.0.dylib */,
 				710289462A94568D0036871F /* LibrespotObjC-lib */,
 				710289532A94568D0036871F /* LibrespotObjC-libTests */,
 				710289452A94568D0036871F /* Products */,
@@ -70,6 +112,10 @@
 		710289462A94568D0036871F /* LibrespotObjC-lib */ = {
 			isa = PBXGroup;
 			children = (
+				71F523622A96FDC40066E361 /* sink */,
+				7107E8982A95670A00DE71A1 /* audio */,
+				7107E8912A9558F100DE71A1 /* decoder-api */,
+				7107E8892A9552EB00DE71A1 /* sink-api */,
 				710289472A94568D0036871F /* LibrespotObjC_lib.h */,
 				710289492A94568D0036871F /* LibrespotObjC_lib.m */,
 			);
@@ -90,6 +136,54 @@
 				710289552A94568D0036871F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7107E8892A9552EB00DE71A1 /* sink-api */ = {
+			isa = PBXGroup;
+			children = (
+				7107E88A2A95530C00DE71A1 /* OutputAudioFormat.h */,
+				7107E88B2A95536D00DE71A1 /* OutputAudioFormat.m */,
+			);
+			name = "sink-api";
+			sourceTree = "<group>";
+		};
+		7107E8912A9558F100DE71A1 /* decoder-api */ = {
+			isa = PBXGroup;
+			children = (
+				7107E8922A95590D00DE71A1 /* SeekableInputStream.h */,
+				7107E8932A95592B00DE71A1 /* SeekableInputStream.m */,
+				7107E8952A9565DD00DE71A1 /* Decoder.h */,
+				7107E8962A9565F500DE71A1 /* Decoder.m */,
+			);
+			name = "decoder-api";
+			sourceTree = "<group>";
+		};
+		7107E8982A95670A00DE71A1 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				7107E8992A95671300DE71A1 /* decoders */,
+			);
+			name = audio;
+			sourceTree = "<group>";
+		};
+		7107E8992A95671300DE71A1 /* decoders */ = {
+			isa = PBXGroup;
+			children = (
+				7107E89A2A95681300DE71A1 /* VorbisDecoder.h */,
+				7107E89B2A95681D00DE71A1 /* VorbisDecoder.m */,
+			);
+			name = decoders;
+			sourceTree = "<group>";
+		};
+		71F523622A96FDC40066E361 /* sink */ = {
+			isa = PBXGroup;
+			children = (
+				71F523632A96FDD30066E361 /* MixerOutput.h */,
+				71F523642A96FDF20066E361 /* MixerOutput.m */,
+				71F523662A96FFEA0066E361 /* LineHelper.h */,
+				71F523672A9700050066E361 /* LineHelper.m */,
+			);
+			name = sink;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,7 +285,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7107E88C2A95536D00DE71A1 /* OutputAudioFormat.m in Sources */,
 				7102894A2A94568D0036871F /* LibrespotObjC_lib.m in Sources */,
+				7107E8972A9565F500DE71A1 /* Decoder.m in Sources */,
+				7107E89C2A95681D00DE71A1 /* VorbisDecoder.m in Sources */,
+				71F523652A96FDF20066E361 /* MixerOutput.m in Sources */,
+				71F523682A9700050066E361 /* LineHelper.m in Sources */,
+				7107E8942A95592B00DE71A1 /* SeekableInputStream.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,20 +390,61 @@
 		710289592A94568D0036871F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				OTHER_LDFLAGS = (
+					"-lvorbisfile",
+					"-lvorbis",
+					"-logg",
+					"-lportaudio",
+					"-lobjc",
+				);
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "ppc ppc64 ppc7400 ppc970 x86_64";
 			};
 			name = Debug;
 		};
 		7102895A2A94568D0036871F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					x86_64,
+					ppc,
+				);
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				OTHER_LDFLAGS = (
+					"-lvorbisfile",
+					"-lvorbis",
+					"-logg",
+					"-lportaudio",
+					"-lobjc",
+				);
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.10;
+				"SDKROOT[arch=ppc]" = macosx10.5;
+				"SDKROOT[arch=x86_64]" = macosx10.10;
+				VALID_ARCHS = "ppc ppc64 ppc7400 ppc970 x86_64";
 			};
 			name = Release;
 		};
@@ -358,6 +499,7 @@
 				7102895A2A94568D0036871F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7102895B2A94568D0036871F /* Build configuration list for PBXNativeTarget "LibrespotObjC-libTests" */ = {
 			isa = XCConfigurationList;
@@ -366,6 +508,7 @@
 				7102895D2A94568D0036871F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
