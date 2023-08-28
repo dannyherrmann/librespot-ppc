@@ -18,6 +18,8 @@
 		7107E8942A95592B00DE71A1 /* SeekableInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7107E8932A95592B00DE71A1 /* SeekableInputStream.m */; };
 		7107E8972A9565F500DE71A1 /* Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7107E8962A9565F500DE71A1 /* Decoder.m */; };
 		7107E89C2A95681D00DE71A1 /* VorbisDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7107E89B2A95681D00DE71A1 /* VorbisDecoder.m */; };
+		7111FEC62A9BD743005846E2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7111FEC52A9BD743005846E2 /* AudioToolbox.framework */; };
+		7111FEC92A9BDA54005846E2 /* PCMBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7111FEC82A9BDA54005846E2 /* PCMBuffer.m */; };
 		71C41DE22A9A83E800C2A7DB /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C41DE02A9A7A3500C2A7DB /* CoreAudio.framework */; };
 		71F5235D2A96F0720066E361 /* libogg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 71F5235C2A96F0720066E361 /* libogg.0.dylib */; };
 		71F523652A96FDF20066E361 /* MixerOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F523642A96FDF20066E361 /* MixerOutput.m */; };
@@ -52,6 +54,9 @@
 		7107E8962A9565F500DE71A1 /* Decoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Decoder.m; sourceTree = "<group>"; };
 		7107E89A2A95681300DE71A1 /* VorbisDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VorbisDecoder.h; sourceTree = "<group>"; };
 		7107E89B2A95681D00DE71A1 /* VorbisDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VorbisDecoder.m; sourceTree = "<group>"; };
+		7111FEC52A9BD743005846E2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		7111FEC72A9BDA45005846E2 /* PCMBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PCMBuffer.h; path = ../PCMBuffer.h; sourceTree = "<group>"; };
+		7111FEC82A9BDA54005846E2 /* PCMBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PCMBuffer.m; path = ../PCMBuffer.m; sourceTree = "<group>"; };
 		71C41DE02A9A7A3500C2A7DB /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		71F5235C2A96F0720066E361 /* libogg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o"; name = libogg.0.dylib; path = ../../../../usr/local/lib/libogg.0.dylib; sourceTree = "<group>"; };
 		71F523632A96FDD30066E361 /* MixerOutput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixerOutput.h; sourceTree = "<group>"; };
@@ -65,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7111FEC62A9BD743005846E2 /* AudioToolbox.framework in Frameworks */,
 				71C41DE22A9A83E800C2A7DB /* CoreAudio.framework in Frameworks */,
 				71F5235D2A96F0720066E361 /* libogg.0.dylib in Frameworks */,
 				7102895F2A94580D0036871F /* libvorbis.0.dylib in Frameworks */,
@@ -88,6 +94,7 @@
 		7102893B2A94568D0036871F = {
 			isa = PBXGroup;
 			children = (
+				7111FEC52A9BD743005846E2 /* AudioToolbox.framework */,
 				71C41DE02A9A7A3500C2A7DB /* CoreAudio.framework */,
 				71F5235C2A96F0720066E361 /* libogg.0.dylib */,
 				7107E88F2A9557BC00DE71A1 /* libobjc.A.dylib */,
@@ -118,6 +125,8 @@
 				7107E8892A9552EB00DE71A1 /* sink-api */,
 				710289472A94568D0036871F /* LibrespotObjC_lib.h */,
 				710289492A94568D0036871F /* LibrespotObjC_lib.m */,
+				7111FEC72A9BDA45005846E2 /* PCMBuffer.h */,
+				7111FEC82A9BDA54005846E2 /* PCMBuffer.m */,
 			);
 			path = "LibrespotObjC-lib";
 			sourceTree = "<group>";
@@ -285,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7111FEC92A9BDA54005846E2 /* PCMBuffer.m in Sources */,
 				7107E88C2A95536D00DE71A1 /* OutputAudioFormat.m in Sources */,
 				7102894A2A94568D0036871F /* LibrespotObjC_lib.m in Sources */,
 				7107E8972A9565F500DE71A1 /* Decoder.m in Sources */,
@@ -405,7 +415,6 @@
 					"-lvorbisfile",
 					"-lvorbis",
 					"-logg",
-					"-lportaudio",
 					"-lobjc",
 				);
 				OTHER_LIBTOOLFLAGS = "";
@@ -436,7 +445,6 @@
 					"-lvorbisfile",
 					"-lvorbis",
 					"-logg",
-					"-lportaudio",
 					"-lobjc",
 				);
 				OTHER_LIBTOOLFLAGS = "";

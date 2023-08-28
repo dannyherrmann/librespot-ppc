@@ -10,10 +10,13 @@
 #define LibrespotObjC_lib_h
 
 #include <stdio.h>
+#include <stdlib.h>
+#include "PCMBuffer.h"
 
-// Declare the decode function
+void initPCMBuffer(PCMBuffer *buffer, size_t initialCapacity);
+void appendToPCMBuffer(PCMBuffer *buffer, short *newData, size_t newSize);
+void freePCMBuffer(PCMBuffer *buffer);
+void decodeOggVorbisFile(const char *inputPath, PCMBuffer *pcmBuffer);
 
-void decodeOggVorbisFile(const char *inputPath, const char *outputPath);
-
-#endif /* librespot_ppc_lib_h */
+#endif
 
