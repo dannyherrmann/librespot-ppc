@@ -10,32 +10,27 @@
 #include <vorbis/vorbisfile.h>
 
 void initPCMBuffer(PCMBuffer *buffer, size_t initialCapacity) {
-    buffer->data = (short *)malloc(initialCapacity * sizeof(short));
-    buffer->size = 0;
-    buffer->capacity = initialCapacity;
+    buffer = [[PCMBuffer alloc] initWithInitialCapacity:initialCapacity];
 }
 
 void appendToPCMBuffer(PCMBuffer *buffer, short *newData, size_t newSize) {
-    if (buffer->size + newSize > buffer->capacity) {
-        buffer->capacity *= 2;
-        buffer->data = (short *)realloc(buffer->data, buffer->capacity * sizeof(short));
-    }
-    
-    memcpy(buffer->data + buffer->size, newData, newSize * sizeof(short));
-    buffer->size += newSize;
+    [buffer appendShorts:newData length:newSize];
 }
 
 void freePCMBuffer(PCMBuffer *buffer) {
-    free(buffer->data);
-    buffer->data = NULL;
-    buffer->size = 0;
-    buffer->capacity = 0;
+    [buffer clearBuffer];
 }
 
 void decodeOggVorbisFile(const char *inputPath, PCMBuffer *pcmBuffer) {
     FILE *inputFile = fopen(inputPath, "rb");
     if (!inputFile) {
         perror("Failed to open input file");
+        return;
+    }
+    
+    FILE *pcmFile = fopen("/Users/dannyherrmann/Downloads/testing.pcm", "wb");
+    if (!pcmFile) {
+        perror("Failed to open output PCM file");
         return;
     }
     
@@ -46,13 +41,24 @@ void decodeOggVorbisFile(const char *inputPath, PCMBuffer *pcmBuffer) {
         return;
     }
     
+    vorbis_info *info = ov_info(&vf, -1);
+    if (info) {
+        fprintf(stderr, "Channels: %d\n", info->channels);
+        fprintf(stderr, "Rate: %ld\n", info->rate);
+        fprintf(stderr, "Bit-depth: %d\n", info->bitrate_nominal);
+    } else {
+        fprintf(stderr, "Failed to retrieve vorbis info.\n");
+    }
+    
     initPCMBuffer(pcmBuffer, 4096);
     
-    char buffer[4096];
+    char readBuffer[4096];
     int readSection;
     long bytesRead;
-    while ((bytesRead = ov_read(&vf, buffer, sizeof(buffer), 0, 2, 1, &readSection)) > 0) {
-        appendToPCMBuffer(pcmBuffer, (short *)buffer, bytesRead / 2);
+    while ((bytesRead = ov_read(&vf, readBuffer, sizeof(readBuffer), 0, 2, 1, &readSection)) > 0) {
+        [pcmBuffer appendShorts:(short *)readBuffer length:bytesRead / 2];
+        
+        fwrite(readBuffer, 1, bytesRead, pcmFile);
     }
     
     ov_clear(&vf);

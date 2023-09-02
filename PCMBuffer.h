@@ -26,5 +26,8 @@
 - (size_t)capacity;
 - (void)setCapacity:(size_t)newCapacity;
 
+- (void) appendShorts:(short *) shorts length:(size_t) length;
+- (void) clearBuffer;
+
 @end
 

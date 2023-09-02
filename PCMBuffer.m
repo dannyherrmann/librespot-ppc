@@ -22,20 +22,35 @@
 }
 
 - (void)appendToBuffer:(short *)newData size:(size_t)newSize {
-    if (size + newSize > capacity) {
-        capacity *= 2;
-        data = (short *)realloc(data, capacity * sizeof(short));
+    @synchronized(self) {
+        if (size + newSize > capacity) {
+            capacity *= 2;
+            data = (short *)realloc(data, capacity * sizeof(short));
+        }
+        memcpy(data + size, newData, newSize * sizeof(short));
+        size += newSize;
     }
-    
-    memcpy(data + size, newData, newSize * sizeof(short));
-    size += newSize;
+}
+
+- (size_t)readFromBuffer:(short *)outData maxSize:(size_t)maxSize {
+    @synchronized(self) {
+        size_t bytesToCopy = MIN(size, maxSize);
+        if (bytesToCopy > 0) {
+            memcpy(outData, data, bytesToCopy);
+            memmove(data, data + bytesToCopy / sizeof(short), size - bytesToCopy);
+            size -= bytesToCopy;
+        }
+        return bytesToCopy;
+    }
 }
 
 - (void)freeBuffer {
-    free(data);
-    data = NULL;
-    size = 0;
-    capacity = 0;
+    @synchronized(self) {
+        free(data);
+        data = NULL;
+        size = 0;
+        capacity = 0;
+    }
 }
 
 // Manual Getters and Setters
@@ -67,26 +82,50 @@
     capacity = newCapacity;
 }
 
+- (void) appendShorts:(short *)shorts length:(size_t)length {
+    [self appendToBuffer:shorts size:length];
+}
+
+- (void) clearBuffer {
+    [self freeBuffer];
+}
+
 @end
 
 void audioQueueOutputCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBufferRef inBuffer) {
     PCMBuffer *buffer = (PCMBuffer *)inUserData;
     
-    if (buffer.size == 0) {
+    size_t bytesToCopy = [buffer readFromBuffer:inBuffer->mAudioData maxSize:inBuffer->mAudioDataBytesCapacity];
+    
+    if (bytesToCopy == 0) {
         AudioQueueStop(inAQ, false);
         return;
     }
     
-    size_t bytesToCopy = (buffer.size < inBuffer->mAudioDataBytesCapacity) ? buffer.size : inBuffer->mAudioDataBytesCapacity;
-    
-    memcpy(inBuffer->mAudioData, buffer.data, bytesToCopy);
     inBuffer->mAudioDataByteSize = bytesToCopy;
-    buffer.size -= bytesToCopy;
-    
     AudioQueueEnqueueBuffer(inAQ, inBuffer, 0, NULL);
 }
 
 void playPCMBufferWithCoreAudio(PCMBuffer *buffer) {
-    // Your existing logic
+    AudioStreamBasicDescription audioFormat;
+    audioFormat.mSampleRate = 44100;  // Adjust based on actual sample rate
+    audioFormat.mFormatID = kAudioFormatLinearPCM;
+    audioFormat.mFormatFlags = kLinearPCMFormatFlagIsSignedInteger | kLinearPCMFormatFlagIsPacked;
+    audioFormat.mBytesPerPacket = 2;  // 16-bit mono
+    audioFormat.mFramesPerPacket = 1; // 1 frame per packet
+    audioFormat.mBytesPerFrame = 2;   // 16-bit mono
+    audioFormat.mChannelsPerFrame = 1; // mono
+    audioFormat.mBitsPerChannel = 16; // 16-bit
+    
+    AudioQueueRef audioQueue;
+    AudioQueueNewOutput(&audioFormat, audioQueueOutputCallback, buffer, NULL, NULL, 0, &audioQueue);
+    
+    // Adding an initial buffer to start the queue.
+    AudioQueueBufferRef initialBuffer;
+    AudioQueueAllocateBuffer(audioQueue, 4096, &initialBuffer);
+    audioQueueOutputCallback(buffer, audioQueue, initialBuffer);
+    
+    // Start the queue.
+    AudioQueueStart(audioQueue, NULL);
 }
 
