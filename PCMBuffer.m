@@ -15,6 +15,10 @@
     self = [super init];
     if (self) {
         data = (short *)malloc(initialCapacity * sizeof(short));
+        if (data == NULL) {
+            NSLog(@"Error: Failed to allocate memory for data in initWithInitialCapacity");
+            return nil;  // return nil to indicate initialization failure
+        }
         size = 0;
         capacity = initialCapacity;
     }
@@ -25,7 +29,12 @@
     @synchronized(self) {
         if (size + newSize > capacity) {
             capacity *= 2;
-            data = (short *)realloc(data, capacity * sizeof(short));
+            short *temp = (short *)realloc(data, capacity * sizeof(short));
+            if (temp == NULL) {
+                NSLog(@"Error: Failed to reallocate memory for data in appendToBuffer");
+                return;  // exit the method; consider handling this more gracefully
+            }
+            data = temp;
         }
         memcpy(data + size, newData, newSize * sizeof(short));
         size += newSize;
@@ -90,23 +99,45 @@
     [self freeBuffer];
 }
 
+- (void)setVorbisInfo:(vorbis_info *)info {
+    vorbisInfo = info;
+}
+
+- (vorbis_info *)vorbisInfo {
+    return vorbisInfo;
+}
+
 @end
 
 void audioQueueOutputCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBufferRef inBuffer) {
+    NSLog(@"Size of short in bytes: %lu, in bits: %lu", sizeof(short), sizeof(short) * 8);
+
     PCMBuffer *buffer = (PCMBuffer *)inUserData;
     
-    size_t bytesToCopy = [buffer readFromBuffer:inBuffer->mAudioData maxSize:inBuffer->mAudioDataBytesCapacity];
-    
-    if (bytesToCopy == 0) {
-        AudioQueueStop(inAQ, false);
-        return;
+    @synchronized(buffer) {
+        if (buffer.size == 0) {
+            AudioQueueStop(inAQ, false);
+            return;
+        }
+        
+        size_t bytesToCopy = MIN(buffer.size, inBuffer->mAudioDataBytesCapacity);
+        
+        memcpy(inBuffer->mAudioData, buffer.data, bytesToCopy);
+        inBuffer->mAudioDataByteSize = bytesToCopy;
+        
+        // Shift the remaining audio data to the beginning of the buffer
+        memmove(buffer.data, buffer.data + (bytesToCopy / sizeof(short)), buffer.size - bytesToCopy);
+        
+        // Update buffer size
+        buffer.size -= bytesToCopy;
+        
+        // Re-enqueue the buffer for future use
+        AudioQueueEnqueueBuffer(inAQ, inBuffer, 0, NULL);
     }
-    
-    inBuffer->mAudioDataByteSize = bytesToCopy;
-    AudioQueueEnqueueBuffer(inAQ, inBuffer, 0, NULL);
 }
 
 void playPCMBufferWithCoreAudio(PCMBuffer *buffer) {
+    vorbis_info *info = buffer.vorbisInfo;
     AudioStreamBasicDescription audioFormat;
     audioFormat.mSampleRate = 44100;  // Adjust based on actual sample rate
     audioFormat.mFormatID = kAudioFormatLinearPCM;
@@ -116,7 +147,15 @@ void playPCMBufferWithCoreAudio(PCMBuffer *buffer) {
     audioFormat.mBytesPerFrame = 2;   // 16-bit mono
     audioFormat.mChannelsPerFrame = 1; // mono
     audioFormat.mBitsPerChannel = 16; // 16-bit
-    
+    NSLog(@"Sample Rate: %lf", audioFormat.mSampleRate);
+    NSLog(@"Format ID: %u", (unsigned int)audioFormat.mFormatID);
+    NSLog(@"Format Flags: %u", (unsigned int)audioFormat.mFormatFlags);
+    NSLog(@"Bytes Per Packet: %u", (unsigned int)audioFormat.mBytesPerPacket);
+    NSLog(@"Frames Per Packet: %u", (unsigned int)audioFormat.mFramesPerPacket);
+    NSLog(@"Bytes Per Frame: %u", (unsigned int)audioFormat.mBytesPerFrame);
+    NSLog(@"Channels Per Frame: %u", (unsigned int)audioFormat.mChannelsPerFrame);
+    NSLog(@"Bits Per Channel: %u", (unsigned int)audioFormat.mBitsPerChannel);
+
     AudioQueueRef audioQueue;
     AudioQueueNewOutput(&audioFormat, audioQueueOutputCallback, buffer, NULL, NULL, 0, &audioQueue);
     

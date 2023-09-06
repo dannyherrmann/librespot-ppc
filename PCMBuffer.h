@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#include <vorbis/vorbisfile.h>
 
 @interface PCMBuffer : NSObject {
     short *data;
     size_t size;
     size_t capacity;
+    vorbis_info *vorbisInfo;
 }
 
 - (id)initWithInitialCapacity:(size_t)initialCapacity;
@@ -28,6 +30,8 @@
 
 - (void) appendShorts:(short *) shorts length:(size_t) length;
 - (void) clearBuffer;
+- (void)setVorbisInfo:(vorbis_info *)info;
+- (vorbis_info *)vorbisInfo;
 
 @end
 
