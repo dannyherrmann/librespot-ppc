@@ -20,6 +20,9 @@
 		7107E89C2A95681D00DE71A1 /* VorbisDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7107E89B2A95681D00DE71A1 /* VorbisDecoder.m */; };
 		7111FEC62A9BD743005846E2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7111FEC52A9BD743005846E2 /* AudioToolbox.framework */; };
 		7111FEC92A9BDA54005846E2 /* PCMBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7111FEC82A9BDA54005846E2 /* PCMBuffer.m */; };
+		718EE5692AACF0D100761728 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 718EE5682AACF0D100761728 /* AudioUnit.framework */; };
+		718EE56B2AACF0DB00761728 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 718EE56A2AACF0DB00761728 /* CoreServices.framework */; };
+		718EE56D2AACF0E100761728 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 718EE56C2AACF0E100761728 /* Carbon.framework */; };
 		71C41DE22A9A83E800C2A7DB /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C41DE02A9A7A3500C2A7DB /* CoreAudio.framework */; };
 		71F5235D2A96F0720066E361 /* libogg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 71F5235C2A96F0720066E361 /* libogg.0.dylib */; };
 		71F523652A96FDF20066E361 /* MixerOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F523642A96FDF20066E361 /* MixerOutput.m */; };
@@ -57,6 +60,9 @@
 		7111FEC52A9BD743005846E2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7111FEC72A9BDA45005846E2 /* PCMBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PCMBuffer.h; path = ../PCMBuffer.h; sourceTree = "<group>"; };
 		7111FEC82A9BDA54005846E2 /* PCMBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PCMBuffer.m; path = ../PCMBuffer.m; sourceTree = "<group>"; };
+		718EE5682AACF0D100761728 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		718EE56A2AACF0DB00761728 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		718EE56C2AACF0E100761728 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		71C41DE02A9A7A3500C2A7DB /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		71F5235C2A96F0720066E361 /* libogg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o"; name = libogg.0.dylib; path = ../../../../usr/local/lib/libogg.0.dylib; sourceTree = "<group>"; };
 		71F523632A96FDD30066E361 /* MixerOutput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixerOutput.h; sourceTree = "<group>"; };
@@ -70,6 +76,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				718EE56D2AACF0E100761728 /* Carbon.framework in Frameworks */,
+				718EE56B2AACF0DB00761728 /* CoreServices.framework in Frameworks */,
+				718EE5692AACF0D100761728 /* AudioUnit.framework in Frameworks */,
 				7111FEC62A9BD743005846E2 /* AudioToolbox.framework in Frameworks */,
 				71C41DE22A9A83E800C2A7DB /* CoreAudio.framework in Frameworks */,
 				71F5235D2A96F0720066E361 /* libogg.0.dylib in Frameworks */,
@@ -94,6 +103,9 @@
 		7102893B2A94568D0036871F = {
 			isa = PBXGroup;
 			children = (
+				718EE56C2AACF0E100761728 /* Carbon.framework */,
+				718EE56A2AACF0DB00761728 /* CoreServices.framework */,
+				718EE5682AACF0D100761728 /* AudioUnit.framework */,
 				7111FEC52A9BD743005846E2 /* AudioToolbox.framework */,
 				71C41DE02A9A7A3500C2A7DB /* CoreAudio.framework */,
 				71F5235C2A96F0720066E361 /* libogg.0.dylib */,
@@ -404,12 +416,16 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/local/include,
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"/usr/local/lib/libportaudio-universal",
+					/usr/local/lib,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OTHER_LDFLAGS = (
 					"-lvorbisfile",
@@ -427,19 +443,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
-					x86_64,
 					ppc,
+					x86_64,
 				);
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/local/include,
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"/usr/local/lib/libportaudio-universal",
+					/usr/local/lib,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OTHER_LDFLAGS = (
 					"-lvorbisfile",

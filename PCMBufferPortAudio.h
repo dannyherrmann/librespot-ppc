@@ -1,15 +1,16 @@
 //
-//  PCMBuffer.h
+//  PCMBufferPortAudio.h
 //  LibrespotObjC-lib
 //
-//  Created by Danny Herrmann on 8/27/23.
+//  Created by Danny Herrmann on 9/9/23.
 //  Copyright (c) 2023 Danny Herrmann. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#include <vorbis/vorbisfile.h>
+#include <portaudio.h>
 
-@interface PCMBuffer : NSObject {
+@interface PCMBuffer2 : NSObject {
+@public
     short *data;
     size_t size;
     size_t capacity;
@@ -17,6 +18,7 @@
 
 - (id)initWithInitialCapacity:(size_t)initialCapacity;
 - (void)appendToBuffer:(short *)newData size:(size_t)newSize;
+- (size_t)readFromBuffer:(short *)outData maxSize:(size_t)maxSize;
 - (void)freeBuffer;
 
 // Manual Getters and Setters
@@ -32,3 +34,10 @@
 
 @end
 
+int audioCallback(const void *inputBuffer, void *outputBuffer,
+                  unsigned long framesPerBuffer,
+                  const PaStreamCallbackTimeInfo* timeInfo,
+                  PaStreamCallbackFlags statusFlags,
+                  void *userData);
+
+void playPCMBufferWithPortAudio(PCMBuffer2 *buffer);

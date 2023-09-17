@@ -99,14 +99,6 @@
     [self freeBuffer];
 }
 
-- (void)setVorbisInfo:(vorbis_info *)info {
-    vorbisInfo = info;
-}
-
-- (vorbis_info *)vorbisInfo {
-    return vorbisInfo;
-}
-
 @end
 
 void audioQueueOutputCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBufferRef inBuffer) {
@@ -137,7 +129,6 @@ void audioQueueOutputCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBu
 }
 
 void playPCMBufferWithCoreAudio(PCMBuffer *buffer) {
-    vorbis_info *info = buffer.vorbisInfo;
     AudioStreamBasicDescription audioFormat;
     audioFormat.mSampleRate = 44100;  // Adjust based on actual sample rate
     audioFormat.mFormatID = kAudioFormatLinearPCM;

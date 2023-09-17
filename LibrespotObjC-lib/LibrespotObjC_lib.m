@@ -50,8 +50,6 @@ void decodeOggVorbisFile(const char *inputPath, PCMBuffer *pcmBuffer) {
         fprintf(stderr, "Failed to retrieve vorbis info.\n");
     }
     
-    [pcmBuffer setVorbisInfo:info];
-    
     initPCMBuffer(pcmBuffer, 4096);
     
     char readBuffer[4096];
