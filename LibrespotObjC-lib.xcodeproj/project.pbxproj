@@ -20,6 +20,7 @@
 		7107E89C2A95681D00DE71A1 /* VorbisDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7107E89B2A95681D00DE71A1 /* VorbisDecoder.m */; };
 		7111FEC62A9BD743005846E2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7111FEC52A9BD743005846E2 /* AudioToolbox.framework */; };
 		7111FEC92A9BDA54005846E2 /* PCMBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7111FEC82A9BDA54005846E2 /* PCMBuffer.m */; };
+		7116F53F2AEAD29900F3D0EA /* DecodeOggVorbisFileAndPlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 7116F53E2AEAD29900F3D0EA /* DecodeOggVorbisFileAndPlay.m */; };
 		718EE5692AACF0D100761728 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 718EE5682AACF0D100761728 /* AudioUnit.framework */; };
 		718EE56B2AACF0DB00761728 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 718EE56A2AACF0DB00761728 /* CoreServices.framework */; };
 		718EE56D2AACF0E100761728 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 718EE56C2AACF0E100761728 /* Carbon.framework */; };
@@ -60,10 +61,12 @@
 		7111FEC52A9BD743005846E2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7111FEC72A9BDA45005846E2 /* PCMBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PCMBuffer.h; path = ../PCMBuffer.h; sourceTree = "<group>"; };
 		7111FEC82A9BDA54005846E2 /* PCMBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PCMBuffer.m; path = ../PCMBuffer.m; sourceTree = "<group>"; };
+		7116F53E2AEAD29900F3D0EA /* DecodeOggVorbisFileAndPlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeOggVorbisFileAndPlay.m; sourceTree = "<group>"; };
 		718EE5682AACF0D100761728 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		718EE56A2AACF0DB00761728 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		718EE56C2AACF0E100761728 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		71C41DE02A9A7A3500C2A7DB /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		71F2709F2AE862DE00164704 /* DecodeOggVorbisFileAndPlay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DecodeOggVorbisFileAndPlay.h; sourceTree = "<group>"; };
 		71F5235C2A96F0720066E361 /* libogg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o"; name = libogg.0.dylib; path = ../../../../usr/local/lib/libogg.0.dylib; sourceTree = "<group>"; };
 		71F523632A96FDD30066E361 /* MixerOutput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixerOutput.h; sourceTree = "<group>"; };
 		71F523642A96FDF20066E361 /* MixerOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixerOutput.m; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				710289492A94568D0036871F /* LibrespotObjC_lib.m */,
 				7111FEC72A9BDA45005846E2 /* PCMBuffer.h */,
 				7111FEC82A9BDA54005846E2 /* PCMBuffer.m */,
+				71F2709F2AE862DE00164704 /* DecodeOggVorbisFileAndPlay.h */,
+				7116F53E2AEAD29900F3D0EA /* DecodeOggVorbisFileAndPlay.m */,
 			);
 			path = "LibrespotObjC-lib";
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				7111FEC92A9BDA54005846E2 /* PCMBuffer.m in Sources */,
 				7107E88C2A95536D00DE71A1 /* OutputAudioFormat.m in Sources */,
 				7102894A2A94568D0036871F /* LibrespotObjC_lib.m in Sources */,
+				7116F53F2AEAD29900F3D0EA /* DecodeOggVorbisFileAndPlay.m in Sources */,
 				7107E8972A9565F500DE71A1 /* Decoder.m in Sources */,
 				7107E89C2A95681D00DE71A1 /* VorbisDecoder.m in Sources */,
 				71F523652A96FDF20066E361 /* MixerOutput.m in Sources */,
